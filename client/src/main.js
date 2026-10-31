@@ -1425,7 +1425,7 @@ function findSpawn() {
 }
 
 function spawnVehicles(px, pz) {
-  const types = ['carry', 'danfo', 'car', 'carry'].slice(0, Number(P.get('vehicles') ?? 4));
+  const types = ['bmw', 'dodge', 'ferrari', 'porsche', 'lamborghini'].slice(0, Number(P.get('vehicles') ?? 5));
   const placed = [];
   for (const [x, z, dx, dz] of roadPts) {
     if (placed.length >= types.length) break;

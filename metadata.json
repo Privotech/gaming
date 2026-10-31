@@ -1,8 +1,0 @@
-{
-  "name": "CityVerse",
-  "description": "3D open-world Ibadan district simulation with realistic buildings, drivable vehicles, and OpenStreetMap data.",
-  "permissions": [],
-  "capabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}

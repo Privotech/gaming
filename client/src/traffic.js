@@ -250,29 +250,33 @@ export class TrafficManager {
   spawnTraffic() {
     if (!this.roadLanes.length) return;
 
-    const types = ['keke', 'okada', 'danfo', 'car', 'keke', 'car'];
+    const types = ['bmw', 'dodge', 'ferrari', 'porsche', 'lamborghini'];
     for (let i = 0; i < this.maxTraffic; i++) {
       const type = types[i % types.length];
       let mesh;
-      let topSpeed = 9; // m/s (~32 km/h)
-      let vehLength = 2.5;
+      let topSpeed = 10.5; // m/s (~38 km/h)
+      let vehLength = 4.4;
 
-      if (type === 'keke') {
-        mesh = buildKekeMesh();
-        topSpeed = 8.5;
-        vehLength = 2.4;
-      } else if (type === 'okada') {
-        mesh = buildOkadaMesh();
-        topSpeed = 12.0; // agile okada
-        vehLength = 2.0;
-      } else if (type === 'danfo') {
-        mesh = buildTrafficDanfoMesh();
-        topSpeed = 10.0;
+      if (type === 'bmw') {
+        mesh = buildTrafficCarMesh();
+        topSpeed = 14.0;
+        vehLength = 4.6;
+      } else if (type === 'dodge') {
+        mesh = buildTrafficCarMesh();
+        topSpeed = 15.5;
         vehLength = 4.8;
+      } else if (type === 'ferrari') {
+        mesh = buildTrafficCarMesh();
+        topSpeed = 17.0;
+        vehLength = 4.4;
+      } else if (type === 'porsche') {
+        mesh = buildTrafficCarMesh();
+        topSpeed = 16.0;
+        vehLength = 4.3;
       } else {
         mesh = buildTrafficCarMesh();
-        topSpeed = 11.0;
-        vehLength = 4.4;
+        topSpeed = 18.0;
+        vehLength = 4.5;
       }
 
       const laneIdx = Math.floor(Math.random() * this.roadLanes.length);
@@ -284,13 +288,15 @@ export class TrafficManager {
       this.scene.add(mesh);
 
       const displayName =
-        type === 'danfo'
-          ? 'Danfo Commercial Bus'
-          : type === 'car'
-          ? 'Toyota Saloon Sedan'
-          : type === 'keke'
-          ? 'Bajaj RE Tricycle'
-          : 'Okada Express Bike';
+        type === 'bmw'
+          ? 'BMW M8 Competition'
+          : type === 'dodge'
+          ? 'Dodge Challenger SRT Hellcat'
+          : type === 'ferrari'
+          ? 'Ferrari F8 Tributo'
+          : type === 'porsche'
+          ? 'Porsche 911 Turbo S'
+          : 'Lamborghini Huracán STO';
 
       this.vehicles.push({
         id: i,

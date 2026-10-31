@@ -4,48 +4,95 @@ import RAPIER from '@dimforge/rapier3d-compat';
 
 // ============================================================
 // CITYVERSE NG  |  vehicles.js
-// High-fidelity Nigerian vehicle models + Rapier physics:
-// - Authentic Nigerian Danfo Bus (VW T3 / HiAce) with yellow/black stripes,
-//   grille, interior, roof luggage rack, and mudflaps
-// - Realistic Saloon Sedan (Toyota Corolla/Camry) with aerodynamic body,
-//   projector headlights, alloy rims, disc brakes, and interior
-// - Suzuki Carry ("Korope") microvan
-// - Realistic wheels with tread, rims, and brake calipers
-// - Dynamic forward headlights and reactive LED brake lights
+// Hypercar / supercar roster for the city traffic and player vehicle experience:
+// - BMW M8 Competition grand tourer
+// - Dodge Challenger SRT Hellcat muscle coupe
+// - Ferrari F8 Tributo
+// - Porsche 911 Turbo S
+// - Lamborghini Huracán STO
+// - Performance wheel + body tuning for street-driving feel
 // ============================================================
 
 export const VEHICLE_TYPES = {
+  bmw: {
+    name: 'BMW M8 Competition',
+    hw: 0.94, hh: 0.46, hl: 2.26, mass: 1320,
+    wheelR: 0.35, wheelW: 0.23, rest: 0.32, stiff: 34, slip: 2.7,
+    engine: 4200, maxKmh: 250, steerMax: 0.6,
+    settle: 0.28,
+    modelUrl: null,
+    modelHasWheels: false,
+    wheelType: 'alloy',
+  },
+  dodge: {
+    name: 'Dodge Challenger SRT Hellcat',
+    hw: 0.96, hh: 0.48, hl: 2.32, mass: 1420,
+    wheelR: 0.35, wheelW: 0.24, rest: 0.38, stiff: 36, slip: 2.8,
+    engine: 4800, maxKmh: 270, steerMax: 0.58,
+    settle: 0.3,
+    modelUrl: null,
+    modelHasWheels: false,
+    wheelType: 'alloy',
+  },
+  ferrari: {
+    name: 'Ferrari F8 Tributo',
+    hw: 0.93, hh: 0.47, hl: 2.18, mass: 1280,
+    wheelR: 0.35, wheelW: 0.24, rest: 0.31, stiff: 35, slip: 2.9,
+    engine: 3900, maxKmh: 290, steerMax: 0.62,
+    settle: 0.27,
+    modelUrl: null,
+    modelHasWheels: false,
+    wheelType: 'alloy',
+  },
+  porsche: {
+    name: 'Porsche 911 Turbo S',
+    hw: 0.9, hh: 0.45, hl: 2.14, mass: 1260,
+    wheelR: 0.35, wheelW: 0.22, rest: 0.29, stiff: 33, slip: 2.75,
+    engine: 3800, maxKmh: 260, steerMax: 0.64,
+    settle: 0.26,
+    modelUrl: null,
+    modelHasWheels: false,
+    wheelType: 'alloy',
+  },
+  lamborghini: {
+    name: 'Lamborghini Huracán STO',
+    hw: 0.95, hh: 0.49, hl: 2.24, mass: 1290,
+    wheelR: 0.35, wheelW: 0.23, rest: 0.33, stiff: 38, slip: 2.85,
+    engine: 5200, maxKmh: 295, steerMax: 0.63,
+    settle: 0.28,
+    modelUrl: null,
+    modelHasWheels: false,
+    wheelType: 'alloy',
+  },
   car: {
-    name: 'Toyota Saloon Sedan',
-    hw: 0.92, hh: 0.46, hl: 2.2, mass: 1250,
-    wheelR: 0.35, wheelW: 0.23, rest: 0.35, stiff: 32, slip: 2.3,
-    engine: 2300, maxKmh: 115, steerMax: 0.55,
+    name: 'BMW M8 Competition',
+    hw: 0.94, hh: 0.46, hl: 2.26, mass: 1320,
+    wheelR: 0.35, wheelW: 0.23, rest: 0.32, stiff: 34, slip: 2.7,
+    engine: 4200, maxKmh: 250, steerMax: 0.6,
     settle: 0.28,
     modelUrl: null,
     modelHasWheels: false,
     wheelType: 'alloy',
   },
   carry: {
-    name: 'Suzuki Carry (Korope)',
-    hw: 0.82, hh: 0.68, hl: 1.76, mass: 880,
-    wheelR: 0.27, wheelW: 0.24, rest: 0.3, stiff: 28, slip: 2.4,
-    engine: 1750, maxKmh: 95, steerMax: 0.6,
-    settle: 0.22,
-    wheelX: 0.62, wheelZFront: 0.96, wheelZRear: -0.94,
-    modelUrl: '/assets/models/vehicles/suzuki-carry.glb',
-    modelWheelCenterY: 0.16,
-    fallback: 'carry',
-    wheelType: 'steel',
-  },
-  danfo: {
-    name: 'Danfo Commercial Bus',
-    hw: 1.05, hh: 0.88, hl: 2.65, mass: 2300,
-    wheelR: 0.39, wheelW: 0.26, rest: 0.4, stiff: 35, slip: 2.1,
-    engine: 3400, maxKmh: 80, steerMax: 0.52,
-    settle: 0.34,
+    name: 'Dodge Challenger SRT Hellcat',
+    hw: 0.96, hh: 0.48, hl: 2.32, mass: 1420,
+    wheelR: 0.35, wheelW: 0.24, rest: 0.38, stiff: 36, slip: 2.8,
+    engine: 4800, maxKmh: 270, steerMax: 0.58,
+    settle: 0.3,
     modelUrl: null,
     modelHasWheels: false,
-    wheelType: 'steel',
+    wheelType: 'alloy',
+  },
+  danfo: {
+    name: 'Ferrari F8 Tributo',
+    hw: 0.93, hh: 0.47, hl: 2.18, mass: 1280,
+    wheelR: 0.35, wheelW: 0.24, rest: 0.31, stiff: 35, slip: 2.9,
+    engine: 3900, maxKmh: 290, steerMax: 0.62,
+    settle: 0.27,
+    modelUrl: null,
+    modelHasWheels: false,
+    wheelType: 'alloy',
   },
 };
 

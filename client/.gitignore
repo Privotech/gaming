@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 raw-animations/
+
+node_modules/ 
+dist/ 
+.next/ 
+raw-animations/
